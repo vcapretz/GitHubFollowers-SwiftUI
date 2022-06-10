@@ -26,7 +26,7 @@ struct HomeView: View {
                 
                 FavoritesView()
                     .tabItem {
-                        Label("Search", systemImage: "star.fill")
+                        Label("Favorites", systemImage: "star.fill")
                     }
                     .tag(1)
             }
