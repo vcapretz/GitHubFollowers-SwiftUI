@@ -10,8 +10,7 @@ import SwiftUI
 struct SearchView: View {
     @Binding var usernames: [String]
     
-    @ObservedObject var followerViewModel: FollowerViewModel
-    
+    @State private var username: String = ""
     @State private var alertToShow: IdentifiableAlert?
     
     var body: some View {
@@ -24,7 +23,7 @@ struct SearchView: View {
                 .padding(.horizontal, 60)
                 .padding(.bottom, 40)
             
-            TextField("Enter a username", text: $followerViewModel.username, onCommit: {
+            TextField("Enter a username", text: $username, onCommit: {
                 navigateToFollowersView()
             })
                 .frame(height: 50)
@@ -45,18 +44,21 @@ struct SearchView: View {
             Spacer()
         }
         .padding(.horizontal, 20)
+        .navigationDestination(for: String.self) { username in
+            FollowersView(username: username)
+        }
         .alert(item: $alertToShow) { alertToShow in
             alertToShow.alert()
         }
     }
     
     private func navigateToFollowersView() {
-        guard !followerViewModel.username.isEmpty else {
+        guard !username.isEmpty else {
             showEmptyUsernameAlert()
             return
         }
         
-        usernames.append(followerViewModel.username)
+        usernames.append(username)
     }
     
     private func showEmptyUsernameAlert() {
@@ -72,8 +74,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        let followerViewModel = FollowerViewModel()
-        
-        return SearchView(usernames: .constant([]), followerViewModel: followerViewModel)
+        SearchView(usernames: .constant([]))
     }
 }

@@ -23,6 +23,7 @@
 		C7E42A2E2853700E00774D8E /* GFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E42A2D2853700E00774D8E /* GFError.swift */; };
 		C7E42A31285617F400774D8E /* FollowerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E42A30285617F300774D8E /* FollowerViewModel.swift */; };
 		C7E42A332856239200774D8E /* FollowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E42A322856239200774D8E /* FollowerView.swift */; };
+		C7E42A352856692100774D8E /* GFEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E42A342856692100774D8E /* GFEmptyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		C7E42A2D2853700E00774D8E /* GFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFError.swift; sourceTree = "<group>"; };
 		C7E42A30285617F300774D8E /* FollowerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewModel.swift; sourceTree = "<group>"; };
 		C7E42A322856239200774D8E /* FollowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerView.swift; sourceTree = "<group>"; };
+		C7E42A342856692100774D8E /* GFEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				C7E42A1E285293B500774D8E /* GFButton.swift */,
 				C7E42A1C2852930000774D8E /* UtilityViews.swift */,
 				C7E42A322856239200774D8E /* FollowerView.swift */,
+				C7E42A342856692100774D8E /* GFEmptyView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				C7E42A1728527C4800774D8E /* SearchView.swift in Sources */,
 				C7E42A1F285293B500774D8E /* GFButton.swift in Sources */,
 				C7E42A0928527B2000774D8E /* GHFollowersApp.swift in Sources */,
+				C7E42A352856692100774D8E /* GFEmptyView.swift in Sources */,
 				C7E42A1B2852804600774D8E /* FollowersView.swift in Sources */,
 				C7E42A1D2852930000774D8E /* UtilityViews.swift in Sources */,
 				C7E42A2B28536FEE00774D8E /* User.swift in Sources */,
