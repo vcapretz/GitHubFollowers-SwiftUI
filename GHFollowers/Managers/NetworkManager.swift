@@ -13,42 +13,28 @@ class NetworkManager {
     
     private init() {}
     
-    func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
+    func getFollowers(for username: String, page: Int) async -> Result<[Follower], GFError> {
         let endpoint = baseUrl + "/users/\(username)/followers?per_page=100&page=\(page)"
         
         guard let url = URL(string: endpoint) else {
-            completed(.failure(.invalidUsername))
-            return
+            return .failure(.invalidUsername)
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-                return
-            }
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
             
             guard let response = response as? HTTPURLResponse, response.statusCode < 300 else {
-                completed(.failure(.invalidResponse))
-                return
+                return .failure(.invalidResponse)
             }
-
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                let followers = try decoder.decode([Follower].self, from: data)
-                
-                completed(.success(followers))
-            } catch {
-                completed(.failure(.invalidData))
-            }
+            
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            let followers = try decoder.decode([Follower].self, from: data)
+            
+            return .success(followers)
+        } catch {
+            return .failure(.unableToComplete)
         }
-        
-        task.resume()
     }
 }

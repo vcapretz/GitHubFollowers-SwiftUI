@@ -9,14 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var usernames: [String] = []
+    @StateObject var followerViewModel = FollowerViewModel()
     
     var body: some View {
         VStack {
             TabView {
                 NavigationStack(path: $usernames) {
-                    SearchView(usernames: $usernames)
+                    SearchView(usernames: $usernames, followerViewModel: followerViewModel)
                         .navigationDestination(for: String.self) { username in
-                            FollowersView(username: username)
+                            FollowersView(username: username, followerViewModel: followerViewModel)
                         }
                 }
                     .tabItem {
