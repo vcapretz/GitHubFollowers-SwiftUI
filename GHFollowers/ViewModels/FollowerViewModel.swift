@@ -8,11 +8,21 @@
 import Foundation
 
 @MainActor class FollowerViewModel: ObservableObject {
-    @Published private(set) var followers: [Follower] = []
+    private var allFollowers: [Follower] = []
+    var followers: [Follower] {
+        if searchText.isEmpty {
+            return allFollowers
+        } else {
+            return allFollowers.filter {
+                $0.login.localizedCaseInsensitiveContains(searchText.lowercased())
+            }
+        }
+    }
     @Published private(set) var errorMessage: String = ""
     @Published private(set) var page = 1
     @Published private(set) var isLoading = false
-    
+    @Published var searchText = ""
+
     private var hasMoreFollowers = true
     
     func getFollowers(for username: String, page: Int) async  {
@@ -28,7 +38,7 @@ import Foundation
                     hasMoreFollowers = false
                 }
                 
-                followers.append(contentsOf: newFollowers)
+                allFollowers.append(contentsOf: newFollowers)
             case .failure(let error): errorMessage = error.rawValue
         }
     }

@@ -15,16 +15,18 @@ struct FollowersView: View {
     
     var body: some View {
         ZStack {
+            if followerViewModel.searchText.isEmpty && !followerViewModel.isLoading && followerViewModel.followers.isEmpty {
+                GFEmptyView(message: "This user doesn't have any followers. Go follow them 😄.")
+            } else {
+                followersList
+            }
+            
             if followerViewModel.isLoading {
                 Color(uiColor: .systemBackground)
                     .opacity(0.8)
                 
                 ProgressView()
                     .scaleEffect(2)
-            } else if followerViewModel.followers.isEmpty {
-                GFEmptyView(message: "This user doesn't have any followers. Go follow them 😄.")
-            } else {
-                followersList
             }
         }
         .navigationTitle(username)
@@ -66,6 +68,7 @@ struct FollowersView: View {
                 }
             }
         }
+        .searchable(text: $followerViewModel.searchText)
     }
 }
 
