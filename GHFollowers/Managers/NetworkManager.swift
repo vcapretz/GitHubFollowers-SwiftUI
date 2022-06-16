@@ -37,4 +37,29 @@ class NetworkManager {
             return .failure(.unableToComplete)
         }
     }
+    
+    func getUserInfo(for username: String) async -> Result<User, GFError> {
+        let endpoint = baseUrl + "/users/\(username)"
+        
+        guard let url = URL(string: endpoint) else {
+            return .failure(.invalidUsername)
+        }
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode < 300 else {
+                return .failure(.invalidResponse)
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            let user = try decoder.decode(User.self, from: data)
+            
+            return .success(user)
+        } catch {
+            return .failure(.unableToComplete)
+        }
+    }
 }

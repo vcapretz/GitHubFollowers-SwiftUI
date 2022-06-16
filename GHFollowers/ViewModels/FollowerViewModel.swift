@@ -18,6 +18,8 @@ import Foundation
             }
         }
     }
+    
+    @Published var selectedFollower: Follower?
     @Published private(set) var errorMessage: String = ""
     @Published private(set) var page = 1
     @Published private(set) var isLoading = false
@@ -49,5 +51,9 @@ import Foundation
         page += 1
         
         await getFollowers(for: username, page: page)
+    }
+    
+    func selectFollower(_ follower: Follower) {
+        selectedFollower = follower
     }
 }

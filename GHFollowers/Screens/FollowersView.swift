@@ -51,6 +51,9 @@ struct FollowersView: View {
         .alert(item: $alertToShow) { alertToShow in
             alertToShow.alert()
         }
+        .sheet(item: $followerViewModel.selectedFollower) { follower in
+            FollowerDetailView(follower: follower)
+        }
     }
     
     var followersList: some View {
@@ -60,10 +63,18 @@ struct FollowersView: View {
                     if follower == followerViewModel.followers.last {
                         FollowerView(follower: follower)
                             .task {
-                                await followerViewModel.getNextPage(for: username)
+                                if followerViewModel.searchText.isEmpty {
+                                    await followerViewModel.getNextPage(for: username)
+                                }
+                            }
+                            .onTapGesture {
+                                followerViewModel.selectFollower(follower)
                             }
                     } else {
                         FollowerView(follower: follower)
+                            .onTapGesture {
+                                followerViewModel.selectFollower(follower)
+                            }
                     }
                 }
             }
