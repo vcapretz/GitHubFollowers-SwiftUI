@@ -11,3 +11,8 @@ struct IdentifiableAlert: Identifiable {
     var id: String
     var alert: () -> Alert
 }
+
+struct IdentifiableSafariView: Identifiable {
+    var id: String
+    var safari: () -> SFSafariViewWrapper
+}

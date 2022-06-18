@@ -24,10 +24,15 @@ import Foundation
     @Published private(set) var page = 1
     @Published private(set) var isLoading = false
     @Published var searchText = ""
-
+    @Published var username = ""
+    
     private var hasMoreFollowers = true
     
     func getFollowers(for username: String, page: Int) async  {
+        if page == 1 {
+            self.username = username
+        }
+        
         isLoading = true
         
         let result = await NetworkManager.shared.getFollowers(for: username, page: page)
@@ -45,7 +50,7 @@ import Foundation
         }
     }
     
-    func getNextPage(for username: String) async {
+    func getNextPage() async {
         guard hasMoreFollowers else { return }
         
         page += 1
@@ -55,5 +60,14 @@ import Foundation
     
     func selectFollower(_ follower: Follower) {
         selectedFollower = follower
+    }
+    
+    func didTapGitHubFollowers(from username: String) async {
+        selectedFollower = nil
+        page = 1
+        searchText = ""
+        allFollowers.removeAll()
+        
+        await getFollowers(for: username, page: page)
     }
 }

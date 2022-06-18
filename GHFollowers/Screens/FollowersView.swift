@@ -29,7 +29,7 @@ struct FollowersView: View {
                     .scaleEffect(2)
             }
         }
-        .navigationTitle(username)
+        .navigationTitle(followerViewModel.username)
         .navigationBarTitleDisplayMode(.large)
         .onChange(of: followerViewModel.errorMessage, perform: { newValue in
             if newValue.isEmpty {
@@ -53,6 +53,7 @@ struct FollowersView: View {
         }
         .sheet(item: $followerViewModel.selectedFollower) { follower in
             FollowerDetailView(follower: follower)
+                .environmentObject(followerViewModel)
         }
     }
     
@@ -64,7 +65,7 @@ struct FollowersView: View {
                         FollowerView(follower: follower)
                             .task {
                                 if followerViewModel.searchText.isEmpty {
-                                    await followerViewModel.getNextPage(for: username)
+                                    await followerViewModel.getNextPage()
                                 }
                             }
                             .onTapGesture {
