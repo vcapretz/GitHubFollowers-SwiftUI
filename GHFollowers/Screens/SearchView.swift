@@ -8,47 +8,48 @@
 import SwiftUI
 
 struct SearchView: View {
-    @Binding var usernames: [String]
-    
+    @State private var usernames: [String] = []
     @State private var username: String = ""
     @State private var alertToShow: IdentifiableAlert?
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Image("gh-logo")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(.horizontal, 60)
-                .padding(.bottom, 40)
-            
-            TextField("Enter a username", text: $username, onCommit: {
-                navigateToFollowersView()
-            })
+        NavigationStack(path: $usernames) {
+            VStack {
+                Spacer()
+                
+                Image("gh-logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(.horizontal, 60)
+                    .padding(.bottom, 40)
+                
+                TextField("Enter a username", text: $username, onCommit: {
+                    navigateToFollowersView()
+                })
                 .frame(height: 50)
                 .gfTextFieldStyle()
-            
-            Spacer()
-            Spacer()
-            
-            Button {
-                navigateToFollowersView()
-            } label: {
-                Text("Get Followers")
-                    .padding()
-                    .frame(height: 50)
-                    .gfButtonStyle(backgroundColor: .green)
+                
+                Spacer()
+                Spacer()
+                
+                Button {
+                    navigateToFollowersView()
+                } label: {
+                    Text("Get Followers")
+                        .padding()
+                        .frame(height: 50)
+                        .gfButtonStyle(backgroundColor: .green)
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
-        }
-        .padding(.horizontal, 20)
-        .navigationDestination(for: String.self) { username in
-            FollowersView(username: username)
-        }
-        .alert(item: $alertToShow) { alertToShow in
-            alertToShow.alert()
+            .padding(.horizontal, 20)
+            .navigationDestination(for: String.self) { username in
+                FollowersView(username: username)
+            }
+            .alert(item: $alertToShow) { alertToShow in
+                alertToShow.alert()
+            }
         }
     }
     
@@ -74,6 +75,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(usernames: .constant([]))
+        SearchView()
     }
 }

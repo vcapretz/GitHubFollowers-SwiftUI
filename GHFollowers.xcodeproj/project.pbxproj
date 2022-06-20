@@ -10,6 +10,8 @@
 		C781AF25285A709B0086DBEC /* FollowerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C781AF24285A709B0086DBEC /* FollowerDetailView.swift */; };
 		C781AF27285B5C1E0086DBEC /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C781AF26285B5C1E0086DBEC /* UserViewModel.swift */; };
 		C781AF29285B5E150086DBEC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C781AF28285B5E150086DBEC /* Constants.swift */; };
+		C7E3970C28609EE800B714D8 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3970B28609EE800B714D8 /* PersistenceManager.swift */; };
+		C7E3970E28609FB100B714D8 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3970D28609FB100B714D8 /* FavoritesViewModel.swift */; };
 		C7E42A0928527B2000774D8E /* GHFollowersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E42A0828527B2000774D8E /* GHFollowersApp.swift */; };
 		C7E42A0B28527B2000774D8E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E42A0A28527B2000774D8E /* HomeView.swift */; };
 		C7E42A0D28527B2100774D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7E42A0C28527B2100774D8E /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 		C781AF24285A709B0086DBEC /* FollowerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerDetailView.swift; sourceTree = "<group>"; };
 		C781AF26285B5C1E0086DBEC /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		C781AF28285B5E150086DBEC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C7E3970B28609EE800B714D8 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		C7E3970D28609FB100B714D8 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		C7E42A0528527B2000774D8E /* GHFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E42A0828527B2000774D8E /* GHFollowersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFollowersApp.swift; sourceTree = "<group>"; };
 		C7E42A0A28527B2000774D8E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				C7E42A2528536FBE00774D8E /* NetworkManager.swift */,
+				C7E3970B28609EE800B714D8 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 		C7E42A2C2853700200774D8E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C781AF28285B5E150086DBEC /* Constants.swift */,
 				C7E42A2D2853700E00774D8E /* GFError.swift */,
 			);
 			path = Utilities;
@@ -169,7 +175,7 @@
 			children = (
 				C7E42A30285617F300774D8E /* FollowerViewModel.swift */,
 				C781AF26285B5C1E0086DBEC /* UserViewModel.swift */,
-				C781AF28285B5E150086DBEC /* Constants.swift */,
+				C7E3970D28609FB100B714D8 /* FavoritesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -264,12 +270,14 @@
 				C7E42A1F285293B500774D8E /* GFButton.swift in Sources */,
 				C7F751F5285E3B70004DBDB2 /* SFSafariViewWrapper.swift in Sources */,
 				C7E42A0928527B2000774D8E /* GHFollowersApp.swift in Sources */,
+				C7E3970C28609EE800B714D8 /* PersistenceManager.swift in Sources */,
 				C7E42A352856692100774D8E /* GFEmptyView.swift in Sources */,
 				C781AF25285A709B0086DBEC /* FollowerDetailView.swift in Sources */,
 				C7E42A1B2852804600774D8E /* FollowersView.swift in Sources */,
 				C7F751EF285E359F004DBDB2 /* String+Ext.swift in Sources */,
 				C7E42A1D2852930000774D8E /* UtilityViews.swift in Sources */,
 				C781AF27285B5C1E0086DBEC /* UserViewModel.swift in Sources */,
+				C7E3970E28609FB100B714D8 /* FavoritesViewModel.swift in Sources */,
 				C7F751F3285E3846004DBDB2 /* GFItemInfoView.swift in Sources */,
 				C7E42A2B28536FEE00774D8E /* User.swift in Sources */,
 				C7E42A2E2853700E00774D8E /* GFError.swift in Sources */,

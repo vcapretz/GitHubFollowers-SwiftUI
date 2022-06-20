@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor class UserViewModel: ObservableObject {
-    @Published private(set) var user: User = User(login: "", avatarUrl: "", publicRepos: 0, publicGists: 0, htmlUrl: "", following: 0, followers: 0, createdAt: "")
+    @Published private(set) var user: User = User(id: 0, login: "", avatarUrl: "", publicRepos: 0, publicGists: 0, htmlUrl: "", following: 0, followers: 0, createdAt: "")
     
     @Published var gitHubProfile: IdentifiableSafariView?
     @Published private(set) var errorMessage: String = ""

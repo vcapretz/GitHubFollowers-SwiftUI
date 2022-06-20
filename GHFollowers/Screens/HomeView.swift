@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var usernames: [String] = []
-    
     var body: some View {
         VStack {
             TabView {
-                NavigationStack(path: $usernames) {
-                    SearchView(usernames: $usernames)
-                }
+                SearchView()
                     .tabItem {
                         Label("Search", systemImage: "magnifyingglass")
                     }

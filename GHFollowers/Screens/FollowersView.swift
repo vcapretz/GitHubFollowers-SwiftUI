@@ -11,6 +11,7 @@ struct FollowersView: View {
     var username: String
     
     @StateObject var followerViewModel = FollowerViewModel()
+    @EnvironmentObject var favoritesViewModel: FavoritesViewModel
     @State private var alertToShow: IdentifiableAlert?
     
     var body: some View {
@@ -31,6 +32,17 @@ struct FollowersView: View {
         }
         .navigationTitle(followerViewModel.username)
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    Task {
+                        await favoritesViewModel.add(username: followerViewModel.username)
+                    }
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
         .onChange(of: followerViewModel.errorMessage, perform: { newValue in
             if newValue.isEmpty {
                 alertToShow = nil
@@ -40,6 +52,34 @@ struct FollowersView: View {
             alertToShow = IdentifiableAlert(id: "request-error") {
                 Alert(
                     title: Text("Error"),
+                    message: Text(newValue),
+                    dismissButton: .default(Text("Ok"))
+                )
+            }
+        })
+        .onChange(of: favoritesViewModel.successMessage, perform: { newValue in
+            if newValue.isEmpty {
+                alertToShow = nil
+                return
+            }
+            
+            alertToShow = IdentifiableAlert(id: "added-favorites") {
+                Alert(
+                    title: Text("Success"),
+                    message: Text(newValue),
+                    dismissButton: .default(Text("Ok"))
+                )
+            }
+        })
+        .onChange(of: favoritesViewModel.errorMessage, perform: { newValue in
+            if newValue.isEmpty {
+                alertToShow = nil
+                return
+            }
+            
+            alertToShow = IdentifiableAlert(id: "failed-to-add-favorites") {
+                Alert(
+                    title: Text("Something went wrong"),
                     message: Text(newValue),
                     dismissButton: .default(Text("Ok"))
                 )

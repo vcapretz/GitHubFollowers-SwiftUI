@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct GHFollowersApp: App {
+    @StateObject var favoritesViewModel = FavoritesViewModel()
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(favoritesViewModel)
         }
     }
 }
